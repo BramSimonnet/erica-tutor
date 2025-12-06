@@ -69,14 +69,16 @@ Each answer must include:
 
 ## Architecture
 
-The system follows a four-stage pipeline:
+The system follows a **GraphRAG pipeline** with six stages:
 
 1. **Ingestion**: Raw content is extracted from various sources and stored in MongoDB's `raw_documents` collection
 2. **Chunking**: Raw documents are split into manageable chunks (~1200 chars) and stored in `chunk_documents` collection
 3. **Embedding**: Chunks are converted to dense vector embeddings (384-dimensional) using sentence-transformers and stored in `chunk_embeddings` collection
 4. **Entity Extraction**: LLM analyzes each chunk to extract structured entities (concepts, resources, examples) stored in `entity_nodes` collection
+5. **Relationship Extraction**: LLM identifies relationships between entities (prerequisites, related concepts, explanations) stored in `entity_relationships` collection
+6. **Graph Construction**: NetworkX builds a directed multigraph enabling graph-based retrieval and community detection
 
-The vector embeddings enable semantic search and RAG (Retrieval Augmented Generation) for answering questions based on course content.
+**GraphRAG vs Basic RAG**: The system uses knowledge graph traversal (not just vector similarity) for retrieval. This enables prerequisite-aware scaffolding, community-based organization, and citation of specific resources.
 
 ### MongoDB Collections
 
@@ -92,6 +94,9 @@ The vector embeddings enable semantic search and RAG (Retrieval Augmented Genera
   - Concepts: `title`, `definitions`, `difficulty`, `aliases`
   - Resources: `resource_type`, `span`, `description`
   - Examples: `text`, `concepts` (list of concept titles)
+- `entity_relationships`: Edges in the knowledge graph
+  - Fields: `id`, `source_id`, `target_id`, `relationship_type`, `metadata`
+  - Relationship types: `prerequisite`, `related`, `explains`, `example_of`
 
 ### LLM Integration
 
@@ -134,17 +139,26 @@ python -m ingestion.raw_to_chunks
 # Generate embeddings for vector search (run after chunking)
 python -m vectorstore.embed_chunks
 
-# Verify embeddings
-python -m vectorstore.embed_chunks --verify
-
-# Embed only new chunks (incremental)
-python -m vectorstore.embed_chunks --new-only
-
-# Extract entities from chunks
+# Extract entities from chunks (concepts, resources, examples)
 python -m graph.extract_entities
 
-# Interactive AI tutor (RAG-based Q&A)
-python -m vectorstore.rag_query
+# Extract relationships between entities (prerequisites, related, etc.)
+python -m graph.extract_relationships
+
+# Build the knowledge graph with NetworkX
+python -m graph.build_graph
+
+# Detect communities in the knowledge graph
+python -m graph.communities
+
+# Interactive GraphRAG tutor (uses graph traversal + scaffolding)
+python -m graph.graphrag_query
+
+# Generate demonstration answers for assignment deliverables
+python -m graph.graphrag_query --demo
+
+# Basic vector RAG (for comparison only, not for assignment)
+python -m vectorstore.basic_rag_query
 ```
 
 Each script has a `__main__` block with example usage that should be updated with actual content sources.
@@ -181,35 +195,66 @@ MongoDB is accessed directly via pymongo. The connection string is hardcoded to 
 
 Database name: `erica`
 
-## Vector Store & RAG
+## Knowledge Graph & GraphRAG
 
-### Vector Database Architecture
+### Graph Module Structure
 
-The `vectorstore/` module provides semantic search capabilities:
+The `graph/` module implements the GraphRAG system:
 
-- `embeddings.py`: Generates 384-dimensional vectors using sentence-transformers (all-MiniLM-L6-v2 model)
-- `storage.py`: Stores embeddings in MongoDB with efficient indexing
-- `retrieval.py`: Performs cosine similarity search (brute-force for simplicity)
-- `embed_chunks.py`: Batch processing script to embed all chunks
-- `rag_query.py`: RAG implementation combining retrieval + LLM generation
+- `extract_entities.py`: LLM-based extraction of concepts, resources, and examples from chunks
+- `extract_relationships.py`: LLM-based extraction of relationships (prerequisites, related, explains, example_of)
+- `build_graph.py`: NetworkX graph construction and management
+- `communities.py`: Community detection using Louvain algorithm for topic clustering
+- `graphrag_retrieval.py`: Graph traversal-based retrieval (hybrid: vector similarity + graph structure)
+- `graphrag_query.py`: Scaffolded answer generation with resource citations
 
-### Semantic Search
+### Knowledge Graph Structure
 
-The retrieval system uses cosine similarity on dense vectors. For large datasets (>10k chunks), consider:
-- MongoDB Atlas Vector Search
-- FAISS for in-memory search
-- Dedicated vector databases (Pinecone, Weaviate, Qdrant)
+**Graph Type**: NetworkX MultiDiGraph (directed, allows multiple edges between nodes)
 
-### RAG Pipeline
+**Nodes**:
+- **Concepts**: Educational concepts with difficulty levels (easy/medium/hard), definitions, aliases
+- **Resources**: Learning materials (PDF/slide/web/video) with spans (page numbers, timestamps)
+- **Examples**: Worked examples demonstrating concepts
 
-1. User asks a question
-2. Question is embedded into a vector
-3. Top-k most similar chunks are retrieved via cosine similarity
-4. Retrieved chunks are formatted as context
-5. Context + question sent to LLM
-6. LLM generates answer based on context
+**Edges**:
+- **prerequisite**: Concept A must be understood before Concept B (enables scaffolding)
+- **related**: Near-transfer relationships between similar concepts
+- **explains**: Resource/example explains a concept
+- **example_of**: Example demonstrates a concept
 
-The `rag_query.py` module provides both programmatic API (`answer_question()`) and interactive CLI (`interactive_tutor()`).
+### GraphRAG Retrieval Pipeline
+
+The system uses **graph traversal**, not just vector similarity:
+
+1. **Concept Identification**: User query → vector embedding → find relevant concepts via cosine similarity (boosted by graph centrality)
+2. **Subgraph Retrieval**: Starting from relevant concepts, traverse graph to collect:
+   - Prerequisites (for scaffolding from simple → complex)
+   - Related concepts (near-transfer)
+   - Resources that explain concepts
+   - Worked examples
+3. **Scaffolding**: Order concepts by difficulty and prerequisite chains (easy → medium → hard)
+4. **Context Assembly**: Format subgraph into structured context with learning path
+5. **Generation**: LLM generates scaffolded answer with resource citations
+
+### Community Detection
+
+Communities represent topic clusters in the knowledge graph:
+- Uses Louvain algorithm on undirected projection of concept relationships
+- Edges weighted by type (prerequisites weighted higher)
+- Enables topic-based navigation and curriculum organization
+- Stored in `data/communities.json`
+
+### Vector Store (Supporting Module)
+
+The `vectorstore/` module provides vector embeddings for hybrid retrieval:
+
+- `embeddings.py`: Sentence-transformers (all-MiniLM-L6-v2, 384-dim)
+- `storage.py`: MongoDB storage for embeddings
+- `retrieval.py`: Cosine similarity search (used by GraphRAG for initial concept finding)
+- `basic_rag_query.py`: Basic vector RAG (for comparison only, NOT for assignment)
+
+**Important**: The assignment requires GraphRAG, not basic RAG. Use `graph.graphrag_query`, not `vectorstore.basic_rag_query`.
 
 ## Data Directory
 

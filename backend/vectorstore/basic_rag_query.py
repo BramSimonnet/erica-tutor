@@ -1,6 +1,13 @@
 """
-RAG (Retrieval Augmented Generation) query module.
+Basic RAG (Retrieval Augmented Generation) query module.
 Combines vector search with LLM to answer questions based on ingested content.
+
+NOTE: This is a BASIC RAG implementation using only vector similarity.
+The assignment requires GRAPHRAG (graph/graphrag_query.py) which uses
+knowledge graph traversal for retrieval. Use this file only for comparison
+or simple vector-based retrieval tasks.
+
+For the assignment, use: graph.graphrag_query instead.
 """
 from typing import Dict, Any
 from vectorstore.retrieval import retrieve_context_for_query
