@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:pantelis.github.io)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
