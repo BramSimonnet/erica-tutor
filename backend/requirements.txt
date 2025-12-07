@@ -1,12 +1,13 @@
 fastapi
 uvicorn
 pymongo
-langchain
-langchain-community
 networkx
 sentence-transformers
-python-dotenv
 requests
+python-dotenv
 beautifulsoup4
 yt-dlp
 pypdf
+
+langchain
+langchain-community
