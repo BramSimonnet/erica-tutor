@@ -25,5 +25,37 @@ def ingest_webpage(url: str):
 
 
 if __name__ == "__main__":
-    # EXAMPLE: replace with your actual course site
-    ingest_webpage("https://pantelis.github.io/aiml-common/projects/nlp/ai-tutor/")
+    # Course pages to ingest
+    urls = [
+        # Assignment page
+        "https://pantelis.github.io/aiml-common/projects/nlp/ai-tutor/",
+
+        # Main course pages
+        "https://pantelis.github.io/courses/ai/",
+        "https://pantelis.github.io/courses/cv/",
+
+        # Book sections - LLM/Transformers/Attention
+        "https://pantelis.github.io/book/llm/",
+
+        # Deep Learning foundations
+        "https://pantelis.github.io/book/foundations/",
+        "https://pantelis.github.io/book/dnn/",
+
+        # Computer Vision (for CLIP)
+        "https://pantelis.github.io/book/2d-perception/",
+
+        # Math foundations (for variational bounds, Jensen's inequality)
+        "https://pantelis.github.io/aiml-common/lectures/ml-math/",
+        "https://pantelis.github.io/aiml-common/lectures/ml-math/probability/",
+    ]
+
+    print(f"Ingesting {len(urls)} web pages...")
+    for i, url in enumerate(urls, 1):
+        try:
+            print(f"\n[{i}/{len(urls)}] Processing: {url}")
+            ingest_webpage(url)
+        except Exception as e:
+            print(f"[ERROR] Failed to ingest {url}: {e}")
+            continue
+
+    print(f"\n✓ Completed! Check MongoDB for results.")

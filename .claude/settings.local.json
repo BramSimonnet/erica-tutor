@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:pantelis.github.io)"
+      "WebFetch(domain:pantelis.github.io)",
+      "Bash(docker exec:*)"
     ],
     "deny": [],
     "ask": []

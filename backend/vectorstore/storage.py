@@ -2,7 +2,7 @@
 Vector storage in MongoDB.
 Stores embeddings alongside chunk documents for semantic search.
 """
-from pymongo import MongoClient
+from pymongo import MongoClient, UpdateOne
 from typing import List, Optional, Dict, Any
 import numpy as np
 
@@ -93,18 +93,16 @@ def batch_store_embeddings(chunks_with_embeddings: List[Dict[str, Any]]) -> int:
             "embedding": item["embedding"],
             "metadata": item.get("metadata", {})
         }
-        operations.append({
-            "update_one": {
-                "filter": {"chunk_id": item["chunk_id"]},
-                "update": {"$set": doc},
-                "upsert": True
-            }
-        })
+        operations.append(
+            UpdateOne(
+                {"chunk_id": item["chunk_id"]},
+                {"$set": doc},
+                upsert=True
+            )
+        )
 
     if operations:
-        result = embeddings_collection.bulk_write([
-            op["update_one"] for op in operations
-        ])
+        result = embeddings_collection.bulk_write(operations)
         return result.upserted_count + result.modified_count
 
     return 0

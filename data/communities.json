@@ -1,0 +1,1097 @@
+{
+  "total_communities": 49,
+  "communities": {
+    "0": {
+      "community_id": 0,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "9a4a67fa-a189-40a0-b468-dc11450720ab",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 4
+    },
+    "1": {
+      "community_id": 1,
+      "size": 7,
+      "concepts": [
+        {
+          "id": "6b0b74c8-02a4-4340-9932-2cb090221172",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        },
+        {
+          "id": "831f204b-e8e9-4962-85ac-548931d9e3cc",
+          "title": "hypothesis set",
+          "difficulty": "medium"
+        },
+        {
+          "id": "4dc56be9-6381-428b-bac6-da50979a84be",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        },
+        {
+          "id": "1f70a70c-a2d6-4bf0-ac6c-0da8e02fd17b",
+          "title": "Supervised Learning Problem",
+          "difficulty": "medium"
+        },
+        {
+          "id": "eb7b3331-8b5b-4efa-9dbe-1fa1424c4a8e",
+          "title": "Supervised Learning Problem",
+          "difficulty": "medium"
+        },
+        {
+          "id": "8e06bb6a-238f-4b1b-a854-cc9c04757df9",
+          "title": "supervised learning",
+          "difficulty": "medium"
+        },
+        {
+          "id": "f2bb96bc-60b2-4886-8579-e5c406c0278e",
+          "title": "generalization",
+          "difficulty": "easy"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 6,
+        "hard": 0
+      },
+      "internal_edges": 6,
+      "external_edges": 24
+    },
+    "2": {
+      "community_id": 2,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "3db8769f-fd67-4718-b3c5-5ecee193cddf",
+          "title": "hypothesis set",
+          "difficulty": "medium"
+        },
+        {
+          "id": "bc4763e7-cf1c-4ef2-babc-d0dcc65966e9",
+          "title": "generalization",
+          "difficulty": "easy"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "3": {
+      "community_id": 3,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "a80b1ea7-b45f-4897-a9e0-93d959ca7072",
+          "title": "supervised learning",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "4": {
+      "community_id": 4,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "4c4f4f54-c480-4768-a23f-d9dd41a19a68",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "5": {
+      "community_id": 5,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "b5e0f123-d867-49d5-b7e1-7efebb64be58",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "6": {
+      "community_id": 6,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "0a419db4-5f80-48d1-a98c-68d7954d33ac",
+          "title": "generalization",
+          "difficulty": "easy"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "7": {
+      "community_id": 7,
+      "size": 6,
+      "concepts": [
+        {
+          "id": "7e5c2e53-501c-4657-be00-410790bd4ed4",
+          "title": "Supervised Learning Problem",
+          "difficulty": "medium"
+        },
+        {
+          "id": "d8cd6c33-5a18-4da6-a173-33779178ddce",
+          "title": "Engineering AI Agents",
+          "difficulty": "medium"
+        },
+        {
+          "id": "ab661282-a838-43d3-9ac8-a95b243ec161",
+          "title": "hypothesis set",
+          "difficulty": "medium"
+        },
+        {
+          "id": "3d80569a-b520-40a6-ac37-30e366b83d0e",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        },
+        {
+          "id": "0203efc3-7b56-42ba-9b55-b2bb95399c7c",
+          "title": "supervised learning",
+          "difficulty": "medium"
+        },
+        {
+          "id": "000bc796-6fb7-4b63-b990-9f17dab9ab2c",
+          "title": "Training Deep Networks",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 5,
+        "hard": 1
+      },
+      "internal_edges": 5,
+      "external_edges": 3
+    },
+    "8": {
+      "community_id": 8,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "bc3edcbc-495f-450f-8cd0-b3c77252c070",
+          "title": "Erica - Your AI Tutor",
+          "difficulty": "medium"
+        },
+        {
+          "id": "cd2d8208-84f0-40aa-8ce3-55c15a095f4c",
+          "title": "System Architecture",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 2,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "9": {
+      "community_id": 9,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "119da406-6ade-4403-acc4-413a46f34b58",
+          "title": "User Interface (UI)",
+          "difficulty": "easy"
+        },
+        {
+          "id": "5a6c1246-3ffd-44ef-9989-1fc0ff6a63bd",
+          "title": "LLM Server",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "10": {
+      "community_id": 10,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "3d08be28-abc7-4106-8e3c-f10d679bb09f",
+          "title": "State Estimation",
+          "difficulty": "medium"
+        },
+        {
+          "id": "599a961b-3727-4893-832d-6618f20d7312",
+          "title": "GraphRAG Retrieval Augmented Generation",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 1
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "11": {
+      "community_id": 11,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "bf00dee8-8db9-4271-b733-4ebf3b10f4a5",
+          "title": "GraphRAG",
+          "difficulty": "medium"
+        },
+        {
+          "id": "88a8cc7b-8526-4497-ac13-4f812407be33",
+          "title": "ingestion pipeline",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 2,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "12": {
+      "community_id": 12,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "05aacf58-2352-47ea-89a5-635191626f97",
+          "title": "Knowledge Graph (KG)",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 1
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "13": {
+      "community_id": 13,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "a9517606-7c2b-4b28-8b40-86e025432e1f",
+          "title": "Jensen\u2019s inequality",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "14": {
+      "community_id": 14,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "c48828cb-2c70-4988-89cd-c2c28ecb6419",
+          "title": "variational lower bound",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 1
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "15": {
+      "community_id": 15,
+      "size": 5,
+      "concepts": [
+        {
+          "id": "bdb8bc6f-db8a-4249-a352-0883fc011285",
+          "title": "Jensen\u2019s inequality",
+          "difficulty": "medium"
+        },
+        {
+          "id": "e0e0f9f8-36d5-42ad-b199-8ea91e2fb135",
+          "title": "Variational autoencoder losses",
+          "difficulty": "hard"
+        },
+        {
+          "id": "567be9cf-d4fe-4c86-8b07-5465504cda0d",
+          "title": "attention in transformers",
+          "difficulty": "hard"
+        },
+        {
+          "id": "987d8a15-e306-4558-abb3-1c6db0ce22b7",
+          "title": "CLIP",
+          "difficulty": "medium"
+        },
+        {
+          "id": "c25c18fd-a34a-4d6e-8bbb-b516aa645006",
+          "title": "Variational lower bound (ELBO)",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 3,
+        "hard": 2
+      },
+      "internal_edges": 4,
+      "external_edges": 0
+    },
+    "16": {
+      "community_id": 16,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "4797481c-0ec3-4f0d-bdaf-a7005fe8c824",
+          "title": "Variational methods",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 1
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "17": {
+      "community_id": 17,
+      "size": 3,
+      "concepts": [
+        {
+          "id": "e269befb-1306-4276-904d-9c03fcf0bea5",
+          "title": "Engineering AI Agents",
+          "difficulty": "medium"
+        },
+        {
+          "id": "40121e5d-753e-4d2f-bb99-856bed6453f3",
+          "title": "Introduction to Artificial Intelligence",
+          "difficulty": "easy"
+        },
+        {
+          "id": "2995765a-8b53-4c2c-8e9e-51fcffe01db7",
+          "title": "Near transfer",
+          "difficulty": "easy"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 2,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 2,
+      "external_edges": 0
+    },
+    "18": {
+      "community_id": 18,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "5fe0a19d-6d80-44cf-afb2-0da622c3ab15",
+          "title": "Artificial Intelligence (AI)",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "19": {
+      "community_id": 19,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "ff6ca0bd-5c2a-4b55-a121-c7aad764ba19",
+          "title": "AI for Computer Vision",
+          "difficulty": "medium"
+        },
+        {
+          "id": "16f51023-f4da-45d9-a148-5355977be036",
+          "title": "Computer Vision",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 2,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "20": {
+      "community_id": 20,
+      "size": 3,
+      "concepts": [
+        {
+          "id": "81479914-a394-4f98-83c1-57db39ad2590",
+          "title": "Vision Transformers (ViTs)",
+          "difficulty": "hard"
+        },
+        {
+          "id": "dd5aaaed-9558-403e-a76b-a64d0c5316d8",
+          "title": "Convolutional Neural Networks (CNNs)",
+          "difficulty": "medium"
+        },
+        {
+          "id": "7a40ff06-aeed-433a-8889-d7ef44599058",
+          "title": "Recurrent Neural Networks (RNN)",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 2,
+        "hard": 1
+      },
+      "internal_edges": 2,
+      "external_edges": 0
+    },
+    "21": {
+      "community_id": 21,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "53af3f2c-1ab5-4492-8920-540e3c275152",
+          "title": "LLM Inference",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "22": {
+      "community_id": 22,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "c23e7bd1-7ad9-4c50-a8e3-0c28e5caa3d1",
+          "title": "Long Short-Term Memory (LSTM) Architecture",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 1
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "23": {
+      "community_id": 23,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "0bfc2b52-45d0-4858-870e-8ddcf496df18",
+          "title": "Large Language Models",
+          "difficulty": "medium"
+        },
+        {
+          "id": "dae69a60-b4b7-4a8a-b0f5-ae4877509f44",
+          "title": "Natural Language Processing (NLP)",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 2,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "24": {
+      "community_id": 24,
+      "size": 4,
+      "concepts": [
+        {
+          "id": "74b8357c-c8c9-4c28-96d2-ed638d12be43",
+          "title": "Single-head self-attention",
+          "difficulty": "medium"
+        },
+        {
+          "id": "7cc23e53-fab6-46e9-b31d-4e0d728d8ddf",
+          "title": "Neural Machine Translation (NMT)",
+          "difficulty": "hard"
+        },
+        {
+          "id": "a37c1d77-05dc-44e7-802f-a0a805199e88",
+          "title": "Attention Mechanism",
+          "difficulty": "hard"
+        },
+        {
+          "id": "27e714e4-c5c4-4e90-8cf4-d2e109bc5b43",
+          "title": "Multi-head self-attention",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 2,
+        "hard": 2
+      },
+      "internal_edges": 3,
+      "external_edges": 0
+    },
+    "25": {
+      "community_id": 25,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "128f36d4-1961-48cf-9cb3-860c12122f95",
+          "title": "Transformers and Self-Attention",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "26": {
+      "community_id": 26,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "5ebd3cf0-860e-43bb-ad4b-328449795ae8",
+          "title": "The Learning Problem",
+          "difficulty": "easy"
+        },
+        {
+          "id": "ec006415-f268-4263-8bf8-92df7c67346b",
+          "title": "Foundations of Statistical Learning",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "27": {
+      "community_id": 27,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "5ee990d3-c9f0-4494-a1b4-722db242133b",
+          "title": "Maximum Likelihood Estimation of Gaussian Parameters",
+          "difficulty": "medium"
+        },
+        {
+          "id": "2af1ae97-1338-4cbd-816b-b20f4f428687",
+          "title": "Logistic Regression",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 2,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "28": {
+      "community_id": 28,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "5c6b3467-b63f-4594-a42b-064d74cfdbf7",
+          "title": "Entropy",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 1
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "29": {
+      "community_id": 29,
+      "size": 8,
+      "concepts": [
+        {
+          "id": "a1580f8c-74fc-4089-ab5f-67badf6f5e6e",
+          "title": "backpropagation",
+          "difficulty": "medium"
+        },
+        {
+          "id": "e62ed8d6-962c-4639-9f89-60f1120983f8",
+          "title": "Residual Networks (ResNets)",
+          "difficulty": "hard"
+        },
+        {
+          "id": "437166c8-fc6d-41da-98e8-4b0ee921daa0",
+          "title": "deep neural networks (DNNs)",
+          "difficulty": "hard"
+        },
+        {
+          "id": "84c96d70-c57e-47ef-9603-20bad733a01e",
+          "title": "Training Deep Neural Networks",
+          "difficulty": "medium"
+        },
+        {
+          "id": "708ba492-0fbf-4873-a5b3-ac009bdc499e",
+          "title": "data preprocessing",
+          "difficulty": "easy"
+        },
+        {
+          "id": "d25fcc3e-29b6-4a0f-8814-953c994f9d2e",
+          "title": "Engineering AI Agents",
+          "difficulty": "medium"
+        },
+        {
+          "id": "28eb79b7-6f86-4bb3-9c97-a6e32a858e86",
+          "title": "Math for ML",
+          "difficulty": "medium"
+        },
+        {
+          "id": "d68d716a-0c89-4624-bd46-cc4f445575b9",
+          "title": "Faster RCNN Object Detection",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 5,
+        "hard": 2
+      },
+      "internal_edges": 7,
+      "external_edges": 0
+    },
+    "30": {
+      "community_id": 30,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "213166b3-5248-4075-9c18-6c64fbc85849",
+          "title": "2D Perception",
+          "difficulty": "medium"
+        },
+        {
+          "id": "bcc8874f-1689-40f1-89a3-870de8ce740b",
+          "title": "CNN Layers",
+          "difficulty": "easy"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "31": {
+      "community_id": 31,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "b00dd572-3201-4d6c-ae47-a20bd9c6f157",
+          "title": "Probability Basics",
+          "difficulty": "easy"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "32": {
+      "community_id": 32,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "c1db4bf3-f605-477b-a0cf-8eb8dc898acf",
+          "title": "Engineering AI Agents",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "33": {
+      "community_id": 33,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "1c4d5df5-d3b7-44b5-b97a-ee073b245071",
+          "title": "Probability Basics",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "34": {
+      "community_id": 34,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "f41a199c-65ff-44d5-8519-a2f327dc7453",
+          "title": "Probabilities",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "35": {
+      "community_id": 35,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "80b71678-5723-475d-af89-2b7385765c80",
+          "title": "Joint, Marginal and Conditional Probabilities",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 1
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "36": {
+      "community_id": 36,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "f300f3f9-15e7-4d85-8c99-04fa8a48d9bc",
+          "title": "Discrete Probability Distribution Function (pdf)",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "37": {
+      "community_id": 37,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "0f08a338-c98a-4686-a246-07d814720016",
+          "title": "Continuous Probability Distribution Density Function (pdf)",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 1
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "38": {
+      "community_id": 38,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "3e52bd48-aead-4371-9a64-a4c8bff27d9f",
+          "title": "joint distributions",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "39": {
+      "community_id": 39,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "e9a3717d-f500-4aba-b540-14af011cd15d",
+          "title": "sum rule",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "40": {
+      "community_id": 40,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "24a25fcf-124b-4324-b2b1-09ccaabef28b",
+          "title": "product rule",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "41": {
+      "community_id": 41,
+      "size": 3,
+      "concepts": [
+        {
+          "id": "7b17068d-af4a-4a7c-8244-a3bdb27e539e",
+          "title": "bigrams",
+          "difficulty": "easy"
+        },
+        {
+          "id": "59584021-b1d3-4ef4-8b8c-c35f3a87a83b",
+          "title": "marginal probability",
+          "difficulty": "medium"
+        },
+        {
+          "id": "5bdf7f78-23fa-4907-8d7d-2a28cdec0d99",
+          "title": "conditional probability",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 2,
+        "hard": 0
+      },
+      "internal_edges": 2,
+      "external_edges": 0
+    },
+    "42": {
+      "community_id": 42,
+      "size": 2,
+      "concepts": [
+        {
+          "id": "b07cdd85-1d75-4cd2-98f2-45635ef3971a",
+          "title": "Correlated Gaussian Distributions",
+          "difficulty": "medium"
+        },
+        {
+          "id": "a00634fc-653d-449e-94c5-4352e8468054",
+          "title": "multivariate Gaussian distribution",
+          "difficulty": "hard"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 1
+      },
+      "internal_edges": 1,
+      "external_edges": 0
+    },
+    "43": {
+      "community_id": 43,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "3561bc35-5277-42c1-a3d4-0b113c39e273",
+          "title": "Supervised Learning Problem",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "44": {
+      "community_id": 44,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "dd60bed4-1781-404a-9593-7ce8ba7d52c4",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "45": {
+      "community_id": 45,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "7e6cf707-db86-42e6-8cc0-d2942fb9416c",
+          "title": "hypothesis",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "46": {
+      "community_id": 46,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "022aafd7-d56b-4ccf-a7bf-549f2ee7d8e5",
+          "title": "generalization",
+          "difficulty": "easy"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "47": {
+      "community_id": 47,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "4184723d-517f-43a1-b63f-6d049b0c5a93",
+          "title": "supervised learning",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    },
+    "48": {
+      "community_id": 48,
+      "size": 1,
+      "concepts": [
+        {
+          "id": "bf44ebae-053c-4ac4-a564-294ec716f6ea",
+          "title": "The Learning Problem",
+          "difficulty": "medium"
+        }
+      ],
+      "difficulty_distribution": {
+        "easy": 0,
+        "medium": 1,
+        "hard": 0
+      },
+      "internal_edges": 0,
+      "external_edges": 0
+    }
+  }
+}
