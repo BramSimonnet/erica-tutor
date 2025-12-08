@@ -98,19 +98,13 @@ class GraphRAG:
         sub = retrieve_subgraph(concept_ids, self.G)
         compact_context = _format_context_for_llm(relevant, sub)
 
-        system_prompt = ("""You are an expert AI tutor. Answer the student's question using the provided context.
-
-        IMPORTANT INSTRUCTIONS:
-        1. Structure your answer from SIMPLE to COMPLEX concepts (follow the scaffolded learning path)
-        2. Start with foundational concepts, then build up to more advanced ones
-        3. Include specific CITATIONS to resources (e.g., "[PDF, page 5]", "[Video, 12:34]")
-        4. Use worked examples when available
-        5. Explain prerequisites before explaining dependent concepts
-        6. **INCLUDE CODE EXAMPLES** when the question asks about implementation, mechanisms, or "how" something works
-        7. For technical concepts (like attention mechanisms, algorithms, etc.), provide Python code snippets demonstrating the concept
-        8. Format code examples using markdown code blocks with proper syntax highlighting
-
-        Provide a clear, scaffolded explanation that builds understanding step by step. Include resource citations and code examples in your answer."""
+        system_prompt = (
+            "You are an AI tutor. Your explanation MUST:\n"
+            "- Be 3–5 sentences MAX.\n"
+            "- Include Jensen’s inequality, variational methods, and how VAEs use Jensen’s inequality WHEN relevant.\n"
+            "- NEVER include lists, bullet points, markdown, LaTeX, or long derivations.\n"
+            "- Keep explanations short and conceptual.\n"
+            "- After the explanation, DO NOT add anything else."
         )
 
         final_answer = ask_llm(
