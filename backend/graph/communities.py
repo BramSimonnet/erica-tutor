@@ -18,27 +18,22 @@ def detect_communities(G: nx.MultiDiGraph) -> Dict[int, List[str]]:
     Returns:
         Dict mapping community_id -> list of node IDs
     """
-    # Convert to undirected graph for community detection
-    # Only use concept nodes and their relationships
+
     concept_graph = nx.Graph()
 
     for node, data in G.nodes(data=True):
         if data.get("type") == "concept":
             concept_graph.add_node(node, **data)
 
-    # Add edges between concepts (related and prerequisite)
     for source, target, data in G.edges(data=True):
         if concept_graph.has_node(source) and concept_graph.has_node(target):
             rel_type = data.get("relationship")
             if rel_type in ["related", "prerequisite"]:
-                # Weight prerequisites higher as they indicate strong semantic connection
                 weight = 2.0 if rel_type == "prerequisite" else 1.0
                 concept_graph.add_edge(source, target, weight=weight)
 
-    # Detect communities using Louvain algorithm (greedy modularity)
     communities = nx.community.louvain_communities(concept_graph, seed=42)
 
-    # Convert to dict format
     community_dict = {}
     for i, community in enumerate(communities):
         community_dict[i] = list(community)
@@ -64,7 +59,6 @@ def get_community_summary(G: nx.MultiDiGraph, community_id: int, communities: Di
 
     members = communities[community_id]
 
-    # Get concept titles and difficulties
     concepts = []
     difficulty_counts = {"easy": 0, "medium": 0, "hard": 0}
 
@@ -78,7 +72,6 @@ def get_community_summary(G: nx.MultiDiGraph, community_id: int, communities: Di
         difficulty = node_data.get("difficulty", "medium")
         difficulty_counts[difficulty] = difficulty_counts.get(difficulty, 0) + 1
 
-    # Count internal vs external edges
     internal_edges = 0
     external_edges = 0
 
@@ -137,7 +130,6 @@ def get_related_communities(
     members = communities[community_id]
     related_communities = set()
 
-    # Find edges crossing community boundaries
     for node in members:
         for neighbor in G.neighbors(node):
             neighbor_comm = find_community_for_concept(neighbor, communities)
@@ -189,7 +181,6 @@ def get_community_hierarchy(
     Returns:
         Dict describing the community hierarchy
     """
-    # Count prerequisite edges between communities
     prereq_counts = {}
 
     for source, target, data in G.edges(data=True):
@@ -201,7 +192,6 @@ def get_community_hierarchy(
                 key = (source_comm, target_comm)
                 prereq_counts[key] = prereq_counts.get(key, 0) + 1
 
-    # Build adjacency list
     hierarchy = {}
     for (source_comm, target_comm), count in prereq_counts.items():
         if source_comm not in hierarchy:
@@ -218,16 +208,13 @@ if __name__ == "__main__":
     from graph.build_graph import load_graph, export_graph_summary
     import json
 
-    # Load the graph
     G = load_graph()
     if G is None:
         print("No graph found. Run build_graph.py first.")
         exit(1)
 
-    # Detect communities
     communities = detect_communities(G)
 
-    # Print summaries
     print("\nCommunity Summaries:")
     for comm_id in communities:
         summary = get_community_summary(G, comm_id, communities)
@@ -236,10 +223,8 @@ if __name__ == "__main__":
         print(f"  Difficulty: {summary['difficulty_distribution']}")
         print(f"  Concepts: {[c['title'] for c in summary['concepts'][:5]]}")
 
-    # Export
     export_communities(G, communities)
 
-    # Show hierarchy
     hierarchy = get_community_hierarchy(G, communities)
     print(f"\nCommunity hierarchy (prerequisite relationships):")
     print(json.dumps(hierarchy, indent=2))

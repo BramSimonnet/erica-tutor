@@ -20,9 +20,6 @@ MONGO_URI = "mongodb://mongo:27017"
 client = MongoClient(MONGO_URI)
 db = client.erica
 
-# ---------------------------------------------------
-# concept ranking
-# ---------------------------------------------------
 def find_relevant_concepts(query: str, G: nx.MultiDiGraph, top_k=3):
     q_embed = generate_embedding(query)
     concepts = [(n, d) for n, d in G.nodes(data=True) if d.get("type") == "concept"]
@@ -47,10 +44,6 @@ def find_relevant_concepts(query: str, G: nx.MultiDiGraph, top_k=3):
     scores.sort(key=lambda x: x["boosted"], reverse=True)
     return scores[:top_k]
 
-
-# ---------------------------------------------------
-# subgraph
-# ---------------------------------------------------
 def retrieve_subgraph(concept_ids, G):
     nodes = set(concept_ids)
     resources_by_cid = {}
@@ -75,9 +68,6 @@ def retrieve_subgraph(concept_ids, G):
     }
 
 
-# ---------------------------------------------------
-# simple context for LLM
-# ---------------------------------------------------
 def _format_context_for_llm(relevant, subgraph):
     lines = []
 
@@ -92,10 +82,6 @@ def _format_context_for_llm(relevant, subgraph):
 
     return "\n".join(lines)
 
-
-# ---------------------------------------------------
-# MAIN CLASS
-# ---------------------------------------------------
 class GraphRAG:
     def __init__(self, graph_path=None):
         self.G = load_graph()
@@ -112,7 +98,6 @@ class GraphRAG:
         sub = retrieve_subgraph(concept_ids, self.G)
         compact_context = _format_context_for_llm(relevant, sub)
 
-        # 🔥 STRICT SYSTEM PROMPT (assignment requirement)
         system_prompt = (
             "You are an AI tutor. Your explanation MUST:\n"
             "- Be 3–5 sentences MAX.\n"
@@ -129,7 +114,6 @@ class GraphRAG:
             "Write the answer now."
         )
 
-        # Extract used nodes & resources
         used_nodes = [n["id"] for n in sub["nodes"]]
         used_resources = sub["resources"]
 
@@ -140,8 +124,6 @@ class GraphRAG:
             "system_prompt": system_prompt
         }
 
-
-# Convenience function for use in other modules
 def graphrag_retrieve(query: str, top_k_concepts: int = 3, min_similarity: float = 0.3) -> Dict[str, Any]:
     """
     Retrieve relevant subgraph for a query (wrapper for backward compatibility).
@@ -152,19 +134,15 @@ def graphrag_retrieve(query: str, top_k_concepts: int = 3, min_similarity: float
     if G is None:
         return {"error": "Knowledge graph not loaded"}
 
-    # Find relevant concepts
     relevant_concepts = find_relevant_concepts(query, G, top_k=top_k_concepts)
 
     if not relevant_concepts:
         return {"error": "No relevant concepts found"}
 
-    # Get concept IDs
     concept_ids = [c["node_id"] for c in relevant_concepts]
 
-    # Retrieve subgraph
     subgraph_data = retrieve_subgraph(concept_ids, G)
 
-    # Format concepts with full data
     formatted_concepts = []
     for concept in relevant_concepts:
         node_id = concept["node_id"]
@@ -178,12 +156,10 @@ def graphrag_retrieve(query: str, top_k_concepts: int = 3, min_similarity: float
             "degree": G.in_degree(node_id) + G.out_degree(node_id)
         })
 
-    # Scaffold path by difficulty
     scaffolded_path = sorted(formatted_concepts, key=lambda x: {
         'easy': 0, 'medium': 1, 'hard': 2
     }.get(x['difficulty'], 1))
 
-    # Build context summary for LLM
     context_summary = _format_context_for_llm(relevant_concepts, subgraph_data)
 
     return {
