@@ -36,13 +36,13 @@ A simple front-end chat UI that connects to the FastAPI backend.
 # **System Architecture**
 
 ```
-📁 data/
+data/
     ├── pdfs/
     ├── visualizations/
     ├── knowledge_graph.pkl
     ├── communities.json
 
-📁 backend/
+backend/
     ├── app.py               <-- FastAPI server
     ├── llm.py               <-- LM Studio API client
     ├── graph/
@@ -62,7 +62,7 @@ The pipeline has 7 major stages:
 
 ---
 
-#**1. Ingestion**
+# **1. Ingestion**
 
 Raw documents → processed text
 Sources include:
@@ -74,13 +74,13 @@ Sources include:
 
 ---
 
-#**2. Chunking**
+# **2. Chunking**
 
 Documents are split into ~1200-character chunks for easier processing.
 
 ---
 
-#**3. Embedding**
+# **3. Embedding**
 
 Each chunk is embedded using:
 
@@ -96,7 +96,7 @@ Stored and used to:
 
 ---
 
-#**4. Entity Extraction**
+# **4. Entity Extraction**
 
 Each chunk is sent to an LLM to identify:
 
@@ -114,7 +114,7 @@ Example: VAE reconstruction loss
 
 ---
 
-#**5. Relationship Extraction**
+# **5. Relationship Extraction**
 
 The system infers graph edges:
 
@@ -127,7 +127,7 @@ Result: a **multi-relational knowledge graph** (NetworkX MultiDiGraph).
 
 ---
 
-#**6. Graph Construction**
+# **6. Graph Construction**
 
 Nodes + edges are merged into:
 
@@ -155,7 +155,7 @@ Edges: 157 (all 4 relationship types)
 
 ---
 
-#**7. GraphRAG Query Engine**
+# **7. GraphRAG Query Engine**
 
 When a student asks a question:
 
@@ -185,7 +185,7 @@ When a student asks a question:
 
 ---
 
-#**Demo Questions Included**
+# **Demo Questions Included**
 
 The system includes three demonstration outputs required by the assignment:
 
@@ -213,7 +213,7 @@ These outputs appear in the assignment deliverable document.
 
 ---
 
-#**Running the System**
+# **Running the System**
 
 ### **1. Start LM Studio**
 
@@ -248,7 +248,7 @@ You can now chat with **Erica**.
 
 ---
 
-#**Tech Stack**
+# **Tech Stack**
 
 * Python 3.10
 * FastAPI
@@ -260,7 +260,7 @@ You can now chat with **Erica**.
 
 ---
 
-#Contributors
+# Contributors
 
 * **Bram Simonnet**
 * **Ryan Fleshman**
