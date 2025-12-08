@@ -1,11 +1,5 @@
-# AI Tutor Deliverables Report
-
+# AI Tutor Deliverables
 ---
-
-## System Overview
-
- The system implements a knowledge graph-based retrieval augmented
-generation (GraphRAG) approach with scaffolded answer generation.
 
 ### System Architecture
 
@@ -17,7 +11,7 @@ generation (GraphRAG) approach with scaffolded answer generation.
 6. **Graph Construction:** Entities + Relationships → NetworkX MultiDiGraph
 7. **GraphRAG Query:** Question → Subgraph retrieval → Scaffolded answer
 
-### Knowledge Graph Statistics
+### KG info
 
 - **Total Nodes:** 216
   - Concepts: 91
@@ -32,7 +26,7 @@ generation (GraphRAG) approach with scaffolded answer generation.
 
 ---
 
-## LLM Configuration
+## LLM settings
 
 - **Model:** Qwen2.5-7B-Instruct (local)
 - **Server:** LM Studio at host.docker.internal:1234
@@ -41,9 +35,8 @@ generation (GraphRAG) approach with scaffolded answer generation.
 
 ---
 
-## GraphRAG Methodology
+## GraphRAG summary
 
-The system uses graph-based retrieval, NOT just vector similarity:
 
 1. **Concept Identification:** Vector similarity search to find relevant concepts
 2. **Subgraph Extraction:** Graph traversal to collect:
@@ -57,23 +50,19 @@ The system uses graph-based retrieval, NOT just vector similarity:
 
 ---
 
-# Demonstration Questions
+# Deliverables questions - breakdown and final answer
 
-The following sections demonstrate the complete system output for the three required
-demonstration questions.
+Visualizations can be found inside /data/visualizations
 
 
-## Question 1: Explain attention mechanisms in transformers
-
+## Question 1 "Explain attention mechanisms in transformers"
 ---
 
-### Stage 1: Knowledge Graph Retrieval
-
-#### Retrieved Subgraph
+### Knowledge graph retrieval
 
 **Subgraph Size:** 5 nodes, 0 edges
 
-### Concepts Identified
+### Concepts identified
 
 1. **Transformers and Self-Attention**
    - Type: Concept
@@ -111,11 +100,11 @@ demonstration questions.
    - Definition: attention weights computed deterministically from the input context...
 
 
-#### Scaffolding (Learning Path)
+#### Scaffolding 
 
 **Learning Path Length:** 5 concepts
 
-The system orders concepts from simple to complex, following prerequisite chains:
+Concepts from simple to complex, following prerequisite chains:
 
 1. 🟡 **Transformers and Self-Attention** [MEDIUM]
    - decoder-based architectures...
@@ -133,11 +122,9 @@ The system orders concepts from simple to complex, following prerequisite chains
    - Models that adapt the transformer architecture to process visual data, offering an alternative to CNNs....
 
 
-### Stage 2: Answer Generation
-
 #### System Prompt Used
 
-The following prompt was sent to the LLM (Qwen2.5-7B-Instruct via LM Studio):
+This prompt was sent to the LLM:
 
 ```
 You are an expert AI tutor. Answer the student's question using the provided context.
@@ -162,7 +149,7 @@ Provide a clear, scaffolded explanation that builds understanding step by step. 
 
 #### Context Provided to LLM
 
-The following structured context was provided to the LLM:
+The following was provided to LLM:
 
 ```
 [1] CONCEPT: Transformers and Self-Attention (Difficulty: medium)
@@ -182,9 +169,7 @@ The following structured context was provided to the LLM:
 
 ```
 
-### Stage 3: Generated Answer
-
-#### Scaffolded Explanation
+### Generated Answer
 
 Certainly! Let's break down the concept of attention mechanisms in transformers into simpler components before diving into more complex ideas.
 
@@ -300,15 +285,6 @@ In this explanation, we started with the basics of attention mechanisms and self
 This scaffolded approach should help you build a solid understanding of attention mechanisms in transformers!
 
 
-#### Answer Metadata
-
-- **Concepts Retrieved:** 5 nodes
-- **Relationships:** 0 edges
-- **Scaffolding Depth:** 5 steps
-- **Total Resources:** 0
-- **Total Examples:** 0
-
-
 #### Resource Citations
 
 The answer includes citations to the following resource types:
@@ -320,13 +296,11 @@ The answer includes citations to the following resource types:
 
 ---
 
-## Question 2: What are applications of CLIP?
+## Question 2 - What are applications of CLIP?
 
 ---
 
-### Stage 1: Knowledge Graph Retrieval
-
-#### Retrieved Subgraph
+### Knowledge Graph Retrieval
 
 **Subgraph Size:** 1 nodes, 0 edges
 
@@ -340,21 +314,18 @@ The answer includes citations to the following resource types:
    - Definition: pipeline for ingesting multiple media sources such as course web sites, YouTube videos, and slides...
 
 
-#### Scaffolding (Learning Path)
+#### Scaffolding
 
 **Learning Path Length:** 1 concepts
 
-The system orders concepts from simple to complex, following prerequisite chains:
+ordered simple to complex, following prerequisite chains:
 
 1. 🟡 **ingestion pipeline** [MEDIUM]
    - pipeline for ingesting multiple media sources such as course web sites, YouTube videos, and slides...
 
-
-### Stage 2: Answer Generation
-
 #### System Prompt Used
 
-The following prompt was sent to the LLM (Qwen2.5-7B-Instruct via LM Studio):
+following prompt sent to the LLM:
 
 ```
 You are an expert AI tutor. Answer the student's question using the provided context.
@@ -379,7 +350,7 @@ Provide a clear, scaffolded explanation that builds understanding step by step. 
 
 #### Context Provided to LLM
 
-The following structured context was provided to the LLM:
+following structured context was provided:
 
 ```
 [1] CONCEPT: ingestion pipeline (Difficulty: medium)
@@ -387,9 +358,8 @@ The following structured context was provided to the LLM:
 
 ```
 
-### Stage 3: Generated Answer
+### Generated Answer
 
-#### Scaffolded Explanation
 
 Certainly! Let's break down the concept of CLIP (Contrastive Language-Image Pre-training) and explore its various applications step by step.
 
@@ -493,16 +463,6 @@ For further reading and exploration, consider checking out the official CLIP doc
 
 Feel free to ask if you have more questions or need help with any part of this explanation!
 
-
-#### Answer Metadata
-
-- **Concepts Retrieved:** 1 nodes
-- **Relationships:** 0 edges
-- **Scaffolding Depth:** 1 steps
-- **Total Resources:** 0
-- **Total Examples:** 0
-
-
 #### Resource Citations
 
 The answer includes citations to the following resource types:
@@ -518,9 +478,7 @@ The answer includes citations to the following resource types:
 
 ---
 
-### Stage 1: Knowledge Graph Retrieval
-
-#### Retrieved Subgraph
+### Knowledge Graph Retrieval
 
 **Subgraph Size:** 9 nodes, 0 edges
 
@@ -576,11 +534,11 @@ The answer includes citations to the following resource types:
    - Span: 4/4
 
 
-#### Scaffolding (Learning Path)
+#### Scaffolding
 
 **Learning Path Length:** 5 concepts
 
-The system orders concepts from simple to complex, following prerequisite chains:
+Concepts from simple to complex, following prerequisite chains:
 
 1. 🟡 **Jensen’s inequality** [MEDIUM]
    - A mathematical concept used in deriving variational lower bound (ELBO)....
@@ -597,12 +555,9 @@ The system orders concepts from simple to complex, following prerequisite chains
 5. 🔴 **Variational autoencoder losses** [HARD]
    - Loss functions used in variational autoencoders that incorporate Jensen’s inequality...
 
-
-### Stage 2: Answer Generation
-
 #### System Prompt Used
 
-The following prompt was sent to the LLM (Qwen2.5-7B-Instruct via LM Studio):
+following prompt sent to the LLM:
 
 ```
 You are an expert AI tutor. Answer the student's question using the provided context.
@@ -627,7 +582,7 @@ Provide a clear, scaffolded explanation that builds understanding step by step. 
 
 #### Context Provided to LLM
 
-The following structured context was provided to the LLM:
+Following structured context was provided:
 
 ```
 [1] CONCEPT: Jensen’s inequality (Difficulty: medium)
@@ -653,8 +608,6 @@ RESOURCES:
 ```
 
 ### Stage 3: Generated Answer
-
-#### Scaffolded Explanation
 
 Certainly! Let's break down the concepts of variational bounds and Jensen's inequality from foundational to more advanced levels.
 
@@ -737,16 +690,6 @@ This code snippet demonstrates how to calculate the ELBO in a variational autoen
 
 By understanding these concepts step by step, you can build a strong foundation in probabilistic models and their applications.
 
-
-#### Answer Metadata
-
-- **Concepts Retrieved:** 9 nodes
-- **Relationships:** 0 edges
-- **Scaffolding Depth:** 5 steps
-- **Total Resources:** 0
-- **Total Examples:** 0
-
-
 #### Resource Citations
 
 The answer includes citations to the following resource types:
@@ -760,11 +703,11 @@ The answer includes citations to the following resource types:
 
 # Conclusion
 
-This report demonstrates a system that:
+We can see that our Erica AI tutor:
 - Ingests educational content from multiple sources
 - Builds a knowledge graph with concepts, resources, and examples
 - Retrieves relevant subgraphs using graph traversal (not just vector similarity)
 - Generates scaffolded answers from simple to complex concepts
 - Includes resource citations to support learning
 
-The system successfully answers all three demonstration questions.
+The ai successfully answers all three trial questions.

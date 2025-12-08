@@ -1,6 +1,5 @@
 """
-Build and manage the knowledge graph using NetworkX.
-The graph supports GraphRAG by enabling traversal-based retrieval.
+Build and manage the knowledge graph for GraphRAG
 """
 import networkx as nx
 from pymongo import MongoClient
