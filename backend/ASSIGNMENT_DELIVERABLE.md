@@ -1,13 +1,10 @@
-# GraphRAG AI Tutor - Assignment Deliverable Report
-
-**Generated:** 2025-12-08 02:56:03
+# AI Tutor Deliverables Report
 
 ---
 
 ## System Overview
 
-This report demonstrates the GraphRAG-based intelligent tutoring system developed for the
-Introduction to AI course. The system implements a knowledge graph-based retrieval augmented
+ The system implements a knowledge graph-based retrieval augmented
 generation (GraphRAG) approach with scaffolded answer generation.
 
 ### System Architecture
@@ -763,12 +760,11 @@ The answer includes citations to the following resource types:
 
 # Conclusion
 
-This report demonstrates a complete GraphRAG-based intelligent tutoring system that:
+This report demonstrates a system that:
 - Ingests educational content from multiple sources
 - Builds a knowledge graph with concepts, resources, and examples
 - Retrieves relevant subgraphs using graph traversal (not just vector similarity)
 - Generates scaffolded answers from simple to complex concepts
 - Includes resource citations to support learning
 
-The system successfully answers all three demonstration questions with structured,
-pedagogically-sound explanations.
+The system successfully answers all three demonstration questions.

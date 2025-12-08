@@ -139,3 +139,58 @@ class GraphRAG:
             "resources_used": used_resources,
             "system_prompt": system_prompt
         }
+
+
+# Convenience function for use in other modules
+def graphrag_retrieve(query: str, top_k_concepts: int = 3, min_similarity: float = 0.3) -> Dict[str, Any]:
+    """
+    Retrieve relevant subgraph for a query (wrapper for backward compatibility).
+
+    Returns structured data matching the expected format from graphrag_query.
+    """
+    G = load_graph()
+    if G is None:
+        return {"error": "Knowledge graph not loaded"}
+
+    # Find relevant concepts
+    relevant_concepts = find_relevant_concepts(query, G, top_k=top_k_concepts)
+
+    if not relevant_concepts:
+        return {"error": "No relevant concepts found"}
+
+    # Get concept IDs
+    concept_ids = [c["node_id"] for c in relevant_concepts]
+
+    # Retrieve subgraph
+    subgraph_data = retrieve_subgraph(concept_ids, G)
+
+    # Format concepts with full data
+    formatted_concepts = []
+    for concept in relevant_concepts:
+        node_id = concept["node_id"]
+        node_data = G.nodes[node_id]
+        formatted_concepts.append({
+            "id": node_id,
+            "title": concept["title"],
+            "definitions": concept["definitions"],
+            "difficulty": node_data.get("difficulty", "medium"),
+            "similarity": concept["similarity"],
+            "degree": G.in_degree(node_id) + G.out_degree(node_id)
+        })
+
+    # Scaffold path by difficulty
+    scaffolded_path = sorted(formatted_concepts, key=lambda x: {
+        'easy': 0, 'medium': 1, 'hard': 2
+    }.get(x['difficulty'], 1))
+
+    # Build context summary for LLM
+    context_summary = _format_context_for_llm(relevant_concepts, subgraph_data)
+
+    return {
+        "relevant_concepts": formatted_concepts,
+        "subgraph": subgraph_data,
+        "scaffolded_path": scaffolded_path,
+        "context_summary": context_summary,
+        "num_concepts": len(formatted_concepts),
+        "scaffolded_path_length": len(scaffolded_path)
+    }

@@ -1,8 +1,7 @@
 """
 GraphRAG Test Script
-Demonstrates the complete GraphRAG pipeline with detailed output at each stage.
-
-Run with: python -m test_graphrag
+Demonstrates GraphRAG pipeline with detailed output at each stage. Checks that this thing works.
+Run with python -m test_graphrag
 """
 import json
 from typing import Dict, Any
@@ -12,7 +11,7 @@ from graph.build_graph import load_graph
 
 
 class Colors:
-    """ANSI color codes for terminal output"""
+    """color codes for terminal formatting, convenience"""
     HEADER = '\033[95m'
     BLUE = '\033[94m'
     CYAN = '\033[96m'
@@ -25,40 +24,40 @@ class Colors:
 
 
 def print_header(text: str):
-    """Print a section header"""
+    """Prints section header"""
     print(f"\n{Colors.BOLD}{Colors.HEADER}{'='*80}{Colors.END}")
     print(f"{Colors.BOLD}{Colors.HEADER}{text.center(80)}{Colors.END}")
     print(f"{Colors.BOLD}{Colors.HEADER}{'='*80}{Colors.END}\n")
 
 
 def print_subheader(text: str):
-    """Print a subsection header"""
+    """Prints subsection header"""
     print(f"\n{Colors.BOLD}{Colors.CYAN}▶ {text}{Colors.END}")
     print(f"{Colors.CYAN}{'-'*80}{Colors.END}")
 
 
 def print_success(text: str):
-    """Print success message"""
+    """Prints success message"""
     print(f"{Colors.GREEN}✓ {text}{Colors.END}")
 
 
 def print_info(text: str):
-    """Print info message"""
+    """Prints info message"""
     print(f"{Colors.BLUE}ℹ {text}{Colors.END}")
 
 
 def print_warning(text: str):
-    """Print warning message"""
+    """Prints warning message"""
     print(f"{Colors.YELLOW}⚠ {text}{Colors.END}")
 
 
 def print_error(text: str):
-    """Print error message"""
+    """Prints error message"""
     print(f"{Colors.RED}✗ {text}{Colors.END}")
 
 
 def display_graph_stats():
-    """Display statistics about the knowledge graph"""
+    """Display stats about the knowledge graph"""
     print_subheader("Knowledge Graph Statistics")
 
     G = load_graph()
@@ -66,12 +65,12 @@ def display_graph_stats():
         print_error("Knowledge graph not found! Run 'python -m graph.build_graph' first.")
         return False
 
-    # Count nodes by type
+    # Counts nodes by type
     concepts = [n for n, d in G.nodes(data=True) if d.get("type") == "concept"]
     resources = [n for n, d in G.nodes(data=True) if d.get("type") == "resource"]
     examples = [n for n, d in G.nodes(data=True) if d.get("type") == "example"]
 
-    # Count edges by type
+    # Counts edges by type
     edges = list(G.edges(data=True, keys=True))
     edge_types = {}
     for u, v, key, data in edges:
@@ -105,7 +104,7 @@ def display_graph_stats():
 
 
 def display_retrieval_results(result: Dict[str, Any]):
-    """Display detailed retrieval results"""
+    """Displays retrieval results, details"""
     print_subheader("Stage 1: Concept Identification (Vector Similarity)")
 
     if not result.get("relevant_concepts"):
@@ -208,7 +207,7 @@ def display_retrieval_results(result: Dict[str, Any]):
 
 
 def display_answer_with_metadata(result: Dict[str, Any]):
-    """Display final answer with full metadata"""
+    """Display final answer w full metadata"""
     print_subheader("Stage 4: Answer Generation (LLM with Context)")
 
     print(f"{Colors.BOLD}Question:{Colors.END} {result['question']}\n")
@@ -348,7 +347,6 @@ def save_test_results(results: Dict[str, Any], filename: str = "graphrag_test_re
 
 
 def main():
-    """Main test runner"""
     import sys
 
     print_header("GraphRAG Test Suite")

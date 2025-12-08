@@ -16,13 +16,16 @@ IMPORTANT INSTRUCTIONS:
 3. Include specific CITATIONS to resources (e.g., "[PDF, page 5]", "[Video, 12:34]")
 4. Use worked examples when available
 5. Explain prerequisites before explaining dependent concepts
+6. **INCLUDE CODE EXAMPLES** when the question asks about implementation, mechanisms, or "how" something works
+7. For technical concepts (like attention mechanisms, algorithms, etc.), provide Python code snippets demonstrating the concept
+8. Format code examples using markdown code blocks with proper syntax highlighting
 
 Context (organized from simple → complex):
 <<<CONTEXT>>>
 
 Student Question: <<<QUESTION>>>
 
-Provide a clear, scaffolded explanation that builds understanding step by step. Include resource citations in your answer."""
+Provide a clear, scaffolded explanation that builds understanding step by step. Include resource citations and code examples in your answer."""
 
 
 def answer_with_graphrag(

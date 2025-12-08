@@ -84,7 +84,7 @@ def build_knowledge_graph() -> nx.MultiDiGraph:
                 G.add_edge(
                     source,
                     target,
-                    relationship=rel_type,
+                    relationship_type=rel_type,
                     metadata=rel.get("metadata", {})
                 )
 
@@ -153,7 +153,7 @@ def find_prerequisites(G: nx.MultiDiGraph, concept_id: str) -> List[str]:
     """
     prerequisites = []
     for source, target, data in G.in_edges(concept_id, data=True):
-        if data.get("relationship") == "prerequisite":
+        if data.get("relationship_type") == "prerequisite":
             prerequisites.append(source)
     return prerequisites
 
@@ -171,7 +171,7 @@ def find_dependent_concepts(G: nx.MultiDiGraph, concept_id: str) -> List[str]:
     """
     dependents = []
     for source, target, data in G.out_edges(concept_id, data=True):
-        if data.get("relationship") == "prerequisite":
+        if data.get("relationship_type") == "prerequisite":
             dependents.append(target)
     return dependents
 
@@ -190,7 +190,7 @@ def find_related_concepts(G: nx.MultiDiGraph, concept_id: str) -> List[str]:
     related = []
     # Check both incoming and outgoing edges
     for source, target, data in G.edges(concept_id, data=True):
-        if data.get("relationship") == "related":
+        if data.get("relationship_type") == "related":
             related.append(target if source == concept_id else source)
     return related
 
@@ -208,7 +208,7 @@ def find_resources_for_concept(G: nx.MultiDiGraph, concept_id: str) -> List[Dict
     """
     resources = []
     for source, target, data in G.in_edges(concept_id, data=True):
-        if data.get("relationship") == "explains":
+        if data.get("relationship_type") == "explains":
             node_data = G.nodes[source]
             if node_data.get("type") == "resource":
                 resources.append({
@@ -231,7 +231,7 @@ def find_examples_for_concept(G: nx.MultiDiGraph, concept_id: str) -> List[Dict[
     """
     examples = []
     for source, target, data in G.in_edges(concept_id, data=True):
-        if data.get("relationship") == "example_of":
+        if data.get("relationship_type") == "example_of":
             node_data = G.nodes[source]
             if node_data.get("type") == "example":
                 examples.append({
@@ -271,7 +271,7 @@ def get_prerequisite_chain(G: nx.MultiDiGraph, concept_id: str) -> List[List[str
                     valid = True
                     for i in range(len(path) - 1):
                         edges = G.get_edge_data(path[i], path[i+1])
-                        if not any(e.get("relationship") == "prerequisite" for e in edges.values()):
+                        if not any(e.get("relationship_type") == "prerequisite" for e in edges.values()):
                             valid = False
                             break
                     if valid:
@@ -297,7 +297,7 @@ def export_graph_summary(G: nx.MultiDiGraph) -> Dict[str, Any]:
     # Count edge types
     edge_types = {}
     for _, _, data in G.edges(data=True):
-        rel = data.get("relationship", "unknown")
+        rel = data.get("relationship_type", "unknown")
         edge_types[rel] = edge_types.get(rel, 0) + 1
 
     return {

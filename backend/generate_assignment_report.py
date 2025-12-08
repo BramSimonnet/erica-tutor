@@ -376,7 +376,7 @@ def main():
     report = generate_full_report()
 
     # Save to file
-    output_path = "/app/data/ASSIGNMENT_DELIVERABLE.md"
+    output_path = "/app/ASSIGNMENT_DELIVERABLE.md"
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(report)
 
@@ -392,7 +392,7 @@ def main():
     print("  4. Resource citations")
     print()
     print("You can find the report at:")
-    print(f"  {output_path}")
+    print(f"  backend/ASSIGNMENT_DELIVERABLE.md")
     print("=" * 80)
 
 

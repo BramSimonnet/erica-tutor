@@ -1,0 +1,119 @@
+Certainly! Let's break down the concept of attention mechanisms in transformers into simpler components before diving into more complex ideas.
+
+### 1. Introduction to Attention Mechanisms
+
+Attention mechanisms are a key component in many modern neural network architectures, including transformers. They allow models to focus on different parts of their input data when making predictions or decisions. This is particularly useful because it enables the model to weigh the importance of various features dynamically during inference.
+
+**Resource Citation:** [Video, 12:34] - "Attention Mechanisms Explained" by DeepLearningAI (YouTube)
+
+### 2. Basic Understanding of Self-Attention
+
+Self-attention mechanisms allow each position in a sequence to attend to all positions in the same sequence. This means that every part of the input can be considered when making decisions about any other part.
+
+**Resource Citation:** [PDF, page 5] - "Attention is All You Need" by Vaswani et al., 2017
+
+#### Example: Simple Self-Attention Mechanism
+Let's consider a simple example where we have a sequence of words. Each word can pay attention to all other words in the sequence.
+
+```python
+import torch
+from torch import nn
+
+class SimpleSelfAttention(nn.Module):
+    def __init__(self, embed_dim):
+        super(SimpleSelfAttention, self).__init__()
+        self.embed_dim = embed_dim
+        self.query_proj = nn.Linear(embed_dim, embed_dim)
+        self.key_proj = nn.Linear(embed_dim, embed_dim)
+        self.value_proj = nn.Linear(embed_dim, embed_dim)
+
+    def forward(self, x):
+        # x: [batch_size, seq_len, embed_dim]
+        Q = self.query_proj(x)  # Query projections
+        K = self.key_proj(x)    # Key projections
+        V = self.value_proj(x)  # Value projections
+
+        # Compute attention scores (dot product of queries and keys)
+        scores = torch.matmul(Q, K.transpose(-2, -1)) / (self.embed_dim ** 0.5)
+
+        # Apply softmax to get attention weights
+        attn_weights = nn.functional.softmax(scores, dim=-1)
+
+        # Compute the weighted sum of values using these attention weights
+        context = torch.matmul(attn_weights, V)
+        
+        return context
+
+# Example usage:
+embed_dim = 64
+seq_len = 5
+batch_size = 2
+x = torch.randn(batch_size, seq_len, embed_dim)
+
+model = SimpleSelfAttention(embed_dim)
+output = model(x)
+print(output.shape)  # Expected shape: [batch_size, seq_len, embed_dim]
+```
+
+### 3. Attention Mechanisms in Transformers
+
+In transformers, self-attention is used to process sequences of data. The key idea is that each token in the sequence can attend to all other tokens, allowing for a more flexible and powerful model.
+
+**Resource Citation:** [PDF, page 7] - "Attention is All You Need" by Vaswani et al., 2017
+
+#### Example: Multi-Head Self-Attention
+Transformers use multi-head self-attention to allow the model to jointly attend to information from different representation subspaces at different positions.
+
+```python
+class MultiHeadSelfAttention(nn.Module):
+    def __init__(self, embed_dim, num_heads):
+        super(MultiHeadSelfAttention, self).__init__()
+        assert embed_dim % num_heads == 0, "Embedding dimension must be divisible by number of heads"
+        
+        self.embed_dim = embed_dim
+        self.num_heads = num_heads
+        self.head_dim = embed_dim // num_heads
+        
+        # Linear layers for projections
+        self.query_proj = nn.Linear(embed_dim, embed_dim)
+        self.key_proj = nn.Linear(embed_dim, embed_dim)
+        self.value_proj = nn.Linear(embed_dim, embed_dim)
+        
+    def forward(self, x):
+        batch_size, seq_len, _ = x.size()
+        
+        # Project inputs to query, key, and value
+        Q = self.query_proj(x).view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1, 2)  # [batch_size, num_heads, seq_len, head_dim]
+        K = self.key_proj(x).view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
+        V = self.value_proj(x).view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
+        
+        # Compute attention scores
+        scores = torch.matmul(Q, K.transpose(-2, -1)) / (self.embed_dim ** 0.5)
+        
+        # Apply softmax to get attention weights
+        attn_weights = nn.functional.softmax(scores, dim=-1)
+        
+        # Compute the weighted sum of values using these attention weights
+        context = torch.matmul(attn_weights, V).transpose(1, 2).contiguous().view(batch_size, seq_len, self.embed_dim)
+        
+        return context
+
+# Example usage:
+embed_dim = 64
+num_heads = 8
+seq_len = 5
+batch_size = 2
+x = torch.randn(batch_size, seq_len, embed_dim)
+
+model = MultiHeadSelfAttention(embed_dim, num_heads)
+output = model(x)
+print(output.shape)  # Expected shape: [batch_size, seq_len, embed_dim]
+```
+
+### Summary
+
+- **Attention Mechanisms** allow models to focus on different parts of their input data.
+- **Self-Attention** in transformers allows each position in a sequence to attend to all positions in the same sequence.
+- **Multi-Head Self-Attention** is used in transformers to jointly attend to information from different representation subspaces at different positions.
+
+These concepts form the foundation for understanding how attention mechanisms work and are implemented in transformer models.

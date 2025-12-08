@@ -2,22 +2,11 @@
 
 ## Overview
 
-The `test_graphrag.py` script provides comprehensive testing for the GraphRAG pipeline with detailed visual output showing each stage of processing.
+`test_graphrag.py` script provides  testing for the GraphRAG pipeline, detailed output showing each stage.
 
-## Features
+## Running tests
 
-- **Color-coded terminal output** for easy reading
-- **Stage-by-stage visualization** of the GraphRAG pipeline:
-  1. Concept Identification (vector similarity)
-  2. Subgraph Retrieval (graph traversal)
-  3. Scaffolding (simple → complex ordering)
-  4. Answer Generation (LLM with context)
-- **Graph statistics** display
-- **Multiple testing modes** (single query, multi-query, interactive, demo)
-
-## Running the Tests
-
-### From Docker Container
+### From Docker Container (assumes you've done the intake/graph already)
 
 ```bash
 # Enter the backend container
@@ -41,9 +30,9 @@ python -m test_graphrag --demo
 python -m test_graphrag "What is attention in transformers?"
 ```
 
-### Prerequisites
+### Prereqs
 
-The knowledge graph must be built before testing:
+Knowledge graph must be built before testing
 
 ```bash
 # 1. Extract entities from chunks
@@ -96,7 +85,7 @@ Final LLM-generated answer with:
 - Resource citations
 - Metadata about retrieval
 
-## Understanding the Color Codes
+## Color Code
 
 - 🟢 **Green**: Success, high similarity, easy difficulty
 - 🟡 **Yellow**: Warning, medium similarity, medium difficulty
@@ -104,32 +93,29 @@ Final LLM-generated answer with:
 - 🔵 **Blue**: Information, resources
 - 🟣 **Purple**: Headers
 
-## Testing Strategies
-
-### Quick Test
+### quick prompt
 ```bash
 python -m test_graphrag "What is CLIP?"
 ```
 
-### Thorough Testing
+### thourough testing
 ```bash
 python -m test_graphrag --multi
 ```
 
-### Development/Debugging
+### dev/debug
 ```bash
 python -m test_graphrag --interactive
 # Then type: stats
 # Ask questions interactively
 ```
 
-### Assignment Deliverables
+### assignment demo
 ```bash
 python -m test_graphrag --demo
 # Tests all 3 required demonstration questions
 ```
-
-## Troubleshooting
+troubleshooting
 
 ### "Knowledge graph not found"
 
@@ -144,13 +130,13 @@ python -m graph.build_graph
 - Lower the similarity threshold in the code
 - Ensure embeddings are generated for chunks
 
-### LLM Connection Issues
+### LLM connection issue
 
-- Ensure LM Studio is running on host machine at `localhost:1234`
+- Ensure LM Studio is running on host machine at `localhost:1234`. may need /v1 added to end manually
 - Check `llm/qwenclient.py` configuration
 - Test LLM connection: `curl http://localhost:1234/v1/models`
 
-## Example Output
+## Example
 
 ```
 ================================================================================
@@ -211,7 +197,7 @@ Generated Answer:
 ────────────────────────────────────────────────────────────────────────────────
 ```
 
-## Customization
+## Custom options
 
 Edit `test_graphrag.py` to modify:
 - Default queries in `test_multiple_queries()`
