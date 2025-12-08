@@ -217,8 +217,10 @@ These outputs appear in the assignment deliverable document.
 
 ### **1. Start LM Studio**
 
-Load a compatible model (e.g., **Qwen2.5-7B-Instruct**, used in the building of this system)
-Make sure the local server is reachable at:
+1. Launch LM Studio
+2. Download and load **Qwen2.5-7B-Instruct** (or similar model)
+3. Start the local server on port `1234`
+4. Verify it's running: `curl http://localhost:1234/v1/models`
 
 ```
 http://127.0.0.1:1234
@@ -247,6 +249,68 @@ http://localhost:8000
 You can now chat with **Erica**.
 
 ---
+
+### **4. Bashing the full pipeline+deliverable**
+
+docker exec -it erica-backend bash
+
+# Step 1: Ingest content (web pages, PDFs)
+python -m ingestion.ingest_web
+python -m ingestion.ingest_pdf
+
+# Step 2: Convert to chunks
+python -m ingestion.raw_to_chunks
+
+# Step 3: Generate embeddings
+python -m vectorstore.embed_chunks
+
+# Step 4: Extract entities (concepts, resources, examples)
+python -m graph.extract_entities
+
+# Step 5: Extract relationships (prerequisite, related, explains)
+python -m graph.extract_relationships
+
+# Step 6: Build knowledge graph
+python -m graph.build_graph
+
+# Step 7: Detect communities
+python -m graph.communities
+
+**Or run everything at once:**
+
+```bash
+docker exec erica-backend bash -c "
+python -m ingestion.ingest_web &&
+python -m ingestion.ingest_pdf &&
+python -m ingestion.raw_to_chunks &&
+python -m vectorstore.embed_chunks &&
+python -m graph.extract_entities &&
+python -m graph.extract_relationships &&
+python -m graph.build_graph &&
+python -m graph.communities &&
+echo '✓ Pipeline complete!'
+"
+```
+# Step 8: Make the deliverable report 
+
+```bash
+# Generate the complete assignment report
+docker exec erica-backend python -m generate_assignment_report
+```
+This creates: `data/ASSIGNMENT_DELIVERABLE.md` containing:
+- System prompts used
+- Knowledge graph nodes/edges retrieved
+- Scaffolded explanations with code examples
+- Resource citations
+- Complete output for all 3 demonstration questions
+
+### Create Visualizations
+
+```bash
+# Generate knowledge graph visualizations
+docker exec erica-backend python -m visualize_knowledge_graph
+```
+
 
 #**Tech Stack**
 
