@@ -1,5 +1,5 @@
-import requests
 import os
+import requests
 
 LMSTUDIO_API_BASE = "http://host.docker.internal:1234/v1"
 MODEL_NAME = os.getenv("LMSTUDIO_MODEL", "qwen2.5")
@@ -18,7 +18,6 @@ def ask_llm(prompt: str) -> str:
             },
             timeout=60
         )
-
         data = response.json()
 
         return (

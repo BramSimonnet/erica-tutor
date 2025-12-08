@@ -11,6 +11,7 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 @app.get("/")
 def serve_ui():
     return FileResponse("static/chat.html")
@@ -28,14 +29,14 @@ def query_endpoint(request: Query):
         return {
             "answer": result.get("final_response", "No answer."),
             "nodes_used": result.get("nodes_used", []),
-            "resources_used": result.get("resources_used", []),
-            "system_prompt": result.get("system_prompt", ""),
+            "resources_used": result.get("resources_used", {}),
+            "system_prompt": result.get("system_prompt", "")
         }
 
     except Exception as e:
         return {
             "answer": f"Backend error: {str(e)}",
             "nodes_used": [],
-            "resources_used": [],
+            "resources_used": {},
             "system_prompt": ""
         }
