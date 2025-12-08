@@ -61,7 +61,6 @@
 
 <div id="chatbox"></div>
 
-<!-- NEW: Typing indicator -->
 <div id="typing">Erica is thinking…</div>
 
 <div id="input-area">
@@ -77,15 +76,12 @@
         const text = input.value.trim();
         if (!text) return;
 
-        // Add user message to chat
         chatbox.innerHTML += `<div class="msg user">${text}</div>`;
         input.value = "";
 
-        // Show typing indicator
         typing.style.display = "block";
 
         try {
-            // Call backend
             const response = await fetch("/query", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -95,10 +91,8 @@
             const result = await response.json();
             const answer = result.answer || "No response from backend.";
 
-            // Hide typing indicator
             typing.style.display = "none";
 
-            // Add bot response
             chatbox.innerHTML += `<div class="msg bot">${answer}</div>`;
             chatbox.scrollTop = chatbox.scrollHeight;
 

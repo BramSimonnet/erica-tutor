@@ -50,14 +50,12 @@ def answer_with_graphrag(
             - graph_metadata: retrieved graph structure (if include_metadata=True)
             - system_prompt: prompt used for generation
     """
-    # Step 1: Retrieve relevant subgraph using GraphRAG
     retrieval_result = graphrag_retrieve(
         question,
         top_k_concepts=top_k_concepts,
         min_similarity=min_similarity
     )
 
-    # Check for errors
     if "error" in retrieval_result:
         return {
             "question": question,
@@ -65,7 +63,6 @@ def answer_with_graphrag(
             "graph_metadata": {}
         }
 
-    # Check if we found anything
     if not retrieval_result["relevant_concepts"]:
         return {
             "question": question,
@@ -73,15 +70,12 @@ def answer_with_graphrag(
             "graph_metadata": {}
         }
 
-    # Step 2: Build prompt with scaffolded context
     context = retrieval_result["context_summary"]
     prompt = SCAFFOLDED_ANSWER_PROMPT.replace("<<<CONTEXT>>>", context)
     prompt = prompt.replace("<<<QUESTION>>>", question)
 
-    # Step 3: Generate answer with LLM
     answer = call_llm(prompt)
 
-    # Step 4: Prepare response
     response = {
         "question": question,
         "answer": answer,
@@ -136,14 +130,12 @@ def generate_demonstration_answers():
         print(f"  Scaffolding depth: {result['scaffolded_path_length']}")
         print()
 
-    # Save to file
     output_file = "/app/data/demonstration_answers.json"
     with open(output_file, 'w') as f:
         json.dump(results, f, indent=2)
 
     print(f"✓ Demonstration answers saved to {output_file}")
 
-    # Also create a readable markdown version
     md_output = "/app/data/demonstration_answers.md"
     with open(md_output, 'w') as f:
         f.write("# Erica AI Tutor - Demonstration Answers\n\n")
@@ -223,7 +215,6 @@ def interactive_graphrag_tutor():
             print(f"\n💡 Answer:\n{result['answer']}\n")
             print(f"📊 Used {result['num_concepts']} concepts with {result['scaffolded_path_length']}-step scaffolding")
 
-            # Show graph info
             if result.get('graph_metadata'):
                 meta = result['graph_metadata']
                 print(f"📈 Graph: {meta['subgraph_nodes']} nodes, {meta['subgraph_edges']} edges")

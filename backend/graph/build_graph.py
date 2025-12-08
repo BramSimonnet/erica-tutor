@@ -33,7 +33,6 @@ def build_knowledge_graph() -> nx.MultiDiGraph:
     """
     G = nx.MultiDiGraph()
 
-    # Add all entity nodes
     entities = list(db.entity_nodes.find({}))
     print(f"Adding {len(entities)} entity nodes to graph...")
 
@@ -41,13 +40,11 @@ def build_knowledge_graph() -> nx.MultiDiGraph:
         node_id = entity["id"]
         node_type = entity["type"]
 
-        # Base attributes for all nodes
         node_attrs = {
             "type": node_type,
             "source_chunk": entity.get("source_chunk", ""),
         }
 
-        # Type-specific attributes
         if node_type == "concept":
             node_attrs.update({
                 "title": entity.get("title", ""),
@@ -69,7 +66,6 @@ def build_knowledge_graph() -> nx.MultiDiGraph:
 
         G.add_node(node_id, **node_attrs)
 
-    # Add relationship edges
     relationships = list(db.entity_relationships.find({}))
     print(f"Adding {len(relationships)} relationship edges to graph...")
 
@@ -79,7 +75,7 @@ def build_knowledge_graph() -> nx.MultiDiGraph:
         rel_type = rel.get("relationship_type")
 
         if source and target and rel_type:
-            # Check that both nodes exist
+
             if G.has_node(source) and G.has_node(target):
                 G.add_edge(
                     source,
@@ -253,21 +249,17 @@ def get_prerequisite_chain(G: nx.MultiDiGraph, concept_id: str) -> List[List[str
     Returns:
         List of paths, each path is a list of concept IDs (simple → complex)
     """
-    # Find all concepts with no prerequisites (foundational)
     all_concepts = get_concept_nodes(G)
     foundational = [c for c in all_concepts if len(find_prerequisites(G, c)) == 0]
 
-    # Find paths from each foundational concept to target
     chains = []
     for foundation in foundational:
         if foundation == concept_id:
             chains.append([concept_id])
         else:
             try:
-                # Find all simple paths (prerequisite edges only)
                 paths = []
                 for path in nx.all_simple_paths(G, foundation, concept_id):
-                    # Verify path uses prerequisite edges
                     valid = True
                     for i in range(len(path) - 1):
                         edges = G.get_edge_data(path[i], path[i+1])
@@ -294,7 +286,6 @@ def export_graph_summary(G: nx.MultiDiGraph) -> Dict[str, Any]:
     resources = get_resource_nodes(G)
     examples = get_example_nodes(G)
 
-    # Count edge types
     edge_types = {}
     for _, _, data in G.edges(data=True):
         rel = data.get("relationship_type", "unknown")
@@ -313,11 +304,10 @@ def export_graph_summary(G: nx.MultiDiGraph) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    # Build and save the graph
+
     graph = build_knowledge_graph()
     save_graph(graph)
 
-    # Print summary
     summary = export_graph_summary(graph)
     print("\nGraph Summary:")
     print(json.dumps(summary, indent=2))

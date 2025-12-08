@@ -69,7 +69,6 @@ def _parse_llm_json(raw_response: str):
 
     clean = raw_response.strip()
 
-    # Remove code fences
     if clean.startswith("```"):
         parts = clean.split("```")
         for p in parts:
@@ -80,7 +79,6 @@ def _parse_llm_json(raw_response: str):
                 clean = p
                 break
 
-    # Extract JSON if embedded in text
     if not (clean.startswith("{") and clean.endswith("}")):
         if "{" in clean and "}" in clean:
             clean = clean[clean.find("{"):clean.rfind("}") + 1]
@@ -106,14 +104,12 @@ def extract_concept_relationships(batch_size: int = 10):
         print("Need at least 2 concepts to extract relationships")
         return
 
-    # Process concepts in batches
     for i in range(0, total, batch_size):
         batch = concepts[i:i + batch_size]
         batch_end = min(i + batch_size, total)
 
         print(f"Processing concepts {i+1}-{batch_end}/{total}...")
 
-        # Format concept list for prompt
         concept_list = []
         for c in batch:
             title = c.get("title", "")
@@ -131,10 +127,8 @@ def extract_concept_relationships(batch_size: int = 10):
             print("  Failed to parse LLM response, skipping batch")
             continue
 
-        # Create concept title to ID mapping
         title_to_id = {c.get("title", "").lower(): c["id"] for c in batch}
 
-        # Store prerequisite relationships
         prerequisites = data.get("prerequisites", []) or []
         for prereq in prerequisites:
             if not isinstance(prereq, dict):
@@ -154,7 +148,6 @@ def extract_concept_relationships(batch_size: int = 10):
                 }
                 db.entity_relationships.insert_one(relationship)
 
-        # Store related relationships
         related = data.get("related", []) or []
         for rel in related:
             if not isinstance(rel, dict):
@@ -165,7 +158,6 @@ def extract_concept_relationships(batch_size: int = 10):
             reason = rel.get("reason", "")
 
             if concept1_title in title_to_id and concept2_title in title_to_id:
-                # Create bidirectional relationships
                 relationship1 = {
                     "id": str(uuid.uuid4()),
                     "source_id": title_to_id[concept1_title],
@@ -193,7 +185,6 @@ def link_resources_to_concepts():
         concept_defs = concept.get("definitions", [])
         concept_text = f"{concept_title}: {' '.join(concept_defs)}"
 
-        # Format resources
         resource_list = []
         for r in resources:
             desc = r.get("description", "")
@@ -213,7 +204,6 @@ def link_resources_to_concepts():
         if not data:
             continue
 
-        # Match explanations back to resources
         explains = data.get("explains", []) or []
         for item in explains:
             if not isinstance(item, dict):
@@ -222,7 +212,6 @@ def link_resources_to_concepts():
             resource_desc = item.get("resource_description", "")
             relevance = item.get("relevance", "medium")
 
-            # Find matching resource
             for resource in resources:
                 if resource_desc in resource.get("description", ""):
                     relationship = {
@@ -248,7 +237,6 @@ def link_examples_to_concepts():
 
     print(f"Linking {len(examples)} examples to concepts...")
 
-    # Create concept title to ID mapping
     title_to_id = {c.get("title", "").lower(): c["id"] for c in concepts}
 
     for example in examples:
