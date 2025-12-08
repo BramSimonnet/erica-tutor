@@ -260,7 +260,7 @@ You can now chat with **Erica**.
 
 ---
 
-# 🧑‍🤝‍🧑 Contributors
+#Contributors
 
 * **Bram Simonnet**
 * **Ryan Fleshman**
